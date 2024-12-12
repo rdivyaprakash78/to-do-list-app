@@ -9,20 +9,26 @@ export default function InputButton() {
   function handleSubmit(e) {
     e.preventDefault();
     setTaskList([...taskList, task]);
-    console.log(taskList);
+    setTask("");
   }
 
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form className="inputform" onSubmit={(e) => handleSubmit(e)}>
         <p>Your to do list</p>
-        <input
-          type="text"
-          onChange={(e) => setTask(e.target.value)}
-          value={task}
-        ></input>
-        <button type="submit">Add</button>
+        <div className="inputarea">
+          <input
+            type="text"
+            onChange={(e) => setTask(e.target.value)}
+            value={task}
+            className="inputbox"
+          ></input>
+          <button type="submit">Add</button>
+        </div>
       </form>
+      {taskList.map((task) => (
+        <li>{task}</li>
+      ))}
     </>
   );
 }
